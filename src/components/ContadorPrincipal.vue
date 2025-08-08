@@ -1,28 +1,38 @@
 <template>
   <body>
-    <header>
-      <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+    <main>
+      <!-- Sección contador -->
+      <section class="counter-section">
+        <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
-      <h1>Contador Vue 3</h1>
-      <!-- Aquí va el valor del contador -->
-      <div class="counter">
-        <p>{{ contador }}</p>
-      </div>
+        <h1>Contador Vue 3</h1>
+        <!-- Aquí va el valor del contador -->
+        <div class="counter">
+          <p>{{ contador }}</p>
+        </div>
 
-      <nav>
-        <!-- Botón para incrementar -->
-        <button @click="incrementar">Incrementar</button>
-        <!-- Botón para decrementar -->
-        <button @click="decrementar">Decrementar</button>
-        <!-- Botón para reiniciar -->
-        <button @click="reiniciar">Reiniciar</button>
-      </nav>
-    </header>
+        <div>
+          <!-- Botón para incrementar -->
+          <button @click="incrementar">Incrementar</button>
+          <!-- Botón para decrementar -->
+          <button @click="decrementar">Decrementar</button>
+          <!-- Botón para reiniciar -->
+          <button @click="reiniciar">Reiniciar</button>
+        </div>
+      </section>
+
+      <!-- Sección lista de tareas -->
+      <section class="task-section">
+        <ListaDeTareas />
+        <!-- Aquí se incluye el componente ListaDeTareas -->
+      </section>
+    </main>
   </body>
 </template>
 
 <script setup>
 import { ref } from "vue";
+import ListaDeTareas from "./ListaDeTareas.vue"; // <-- agregar importación de ListaDeTareas
 const contador = ref(0);
 
 const incrementar = () => {
@@ -74,14 +84,16 @@ p {
   width: 200px;
   box-shadow: 0 4px 6px rgba(5, 77, 20, 0.778);
 }
+
 button {
-  background-color: #132a13;
-  color: var(--color-button-text);
-  border: solid 2px var(--color-border);
-  padding: 1rem;
-  margin: 1.5rem;
+  background-color: #004d00;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  margin: 0.5rem;
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 1rem;
+  transition: background-color 0.3s ease;
 }
 button:hover {
   background-color: #008000;
@@ -92,6 +104,73 @@ button:hover {
 .logo {
   display: block;
   margin: 0 auto 2rem;
+}
+main {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 4rem;
+  padding: 2rem;
+  flex-wrap: wrap;
+  color: #f5f5f5;
+  width: 900px;
+}
+.task-section {
+  border: solid 2px var(--color-border);
+  border-radius: 8px;
+  width: fit-content;
+  height: fit-content;
+  box-shadow: 0 4px 6px rgba(5, 77, 20, 0.778);
+}
+.counter-section,
+.task-section {
+  background-color: #1e1e1e;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 255, 0, 0.2);
+  width: 300px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.counter {
+  font-size: 2.5rem;
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.task-list {
+  margin-top: 1rem;
+}
+
+.task {
+  display: flex;
+  justify-content: space-between;
+  background-color: #2c2c2c;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  align-items: center;
+}
+
+.task p {
+  margin: 0;
+  word-wrap: break-word;
+  flex-grow: 1;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #444;
+  background-color: #333;
+  color: white;
 }
 
 @media (min-width: 1024px) {
